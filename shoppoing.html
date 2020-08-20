@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>購物清單頁面</title>
+<script src="https://cdn.bootcss.com/vue/2.2.2/vue.min.js"></script>
+</head>
+<body>
+<div id="app" v-cloak>
+  新增單筆:<br>
+  <td>名稱</td>
+  <td><input type="text" v-model="newAddItem"></td>  
+  <td>單價</td>
+  <td><input v-model="newAddPrice"></td>
+  <td>數量</td>
+  <td><input v-model="newAddAmount"></td>  
+  <button @click='addNewItem'>新增</button>
+  <br>
+  <br>
+    
+  
+  購物清單:
+  
+  <template v-if="lists.length">
+  
+  <table width="200" border="1">
+    <thead>
+      <td>商品名稱</td>
+      <td>單價</td>
+      <td>數量</td>
+    </thead>
+    <tbody>
+    <tr v-for='(list,index) in lists' v-bind:key='list.id'>
+      <td>{{list.name}}</td>      
+      <td>{{list.price}}</td>
+      <td>{{list.amount}}</td>
+      <td><button v-on:click='lists.splice(index,1)'>刪除</button></td>      
+    </tr>
+    </tbody>       
+  </table>  
+  <br>
+  <br>
+  
+   總價:{{totalprice}}
+ 
+  </template>
+  <div v-else>無購買商品!</div>
+
+</div>
+</body>
+</html>
